@@ -24,16 +24,19 @@ bool Sudoku::checkAllRow(int arr[9][9])
    }
    return true;
 };
-
+void Sudoku::getColumnByIndex(int columnIndex, int column[9], int arr[9][9])
+{
+   for (int rowIndex{0}; rowIndex < 9; rowIndex++)
+   {
+      column[rowIndex] = arr[rowIndex][columnIndex];
+   }
+};
 bool Sudoku::checkAllColumns(int arr[9][9])
 {
+   int column[9];
    for (int columnIndex{0}; columnIndex < 9; columnIndex++)
    {
-      int column[9];
-      for (int rowIndex{0}; rowIndex < 9; rowIndex++)
-      {
-         column[rowIndex] = arr[rowIndex][columnIndex];
-      }
+      getColumnByIndex(columnIndex, column, arr);
       if (!checkRepetitions(column))
       {
          return false;
@@ -59,16 +62,17 @@ bool Sudoku::checkSquare(int arr[9][9], int x, int y)
    return checkRepetitions(arrToCheck);
 }
 
-bool Sudoku::checkAllSquares(int arr[9][9]){
-    for (int i = 0; i < 9; i+=3)
-    {
-       for (int j = 0; j < 9; j+=3)
-       {
-        if(!checkSquare(arr,i,j)){
+bool Sudoku::checkAllSquares(int arr[9][9])
+{
+   for (int i = 0; i < 9; i += 3)
+   {
+      for (int j = 0; j < 9; j += 3)
+      {
+         if (!checkSquare(arr, i, j))
+         {
             return false;
-        };
-       }
-       
-    }
-    return true;
+         };
+      }
+   }
+   return true;
 }
