@@ -24,11 +24,11 @@ bool Sudoku::isAnyElementRepeatable(int arrToCheck[9])
    return true;
 }
 
-bool Sudoku::areAllValidRows(int arr[9][9])
+bool Sudoku::areAllValidRows()
 {
    for (int i = 0; i < 9; i++)
    {
-      if (!isAnyElementRepeatable(arr[i]))
+      if (!isAnyElementRepeatable(gameBoard[i]))
       {
          return false;
       };
