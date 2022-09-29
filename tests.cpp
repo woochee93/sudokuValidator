@@ -70,7 +70,7 @@ TEST_F(Fixture, checkAllRows)
 
 TEST_F(Fixture, checkRepetitions)
 {
-   EXPECT_TRUE(sudoku.checkRepetitions(validRow));
-   EXPECT_TRUE(sudoku.checkRepetitions(validRow2));
-   EXPECT_FALSE(sudoku.checkRepetitions(invalidRow2));
+   EXPECT_TRUE(sudoku.isAnyElementRepeatable(validRow));
+   EXPECT_TRUE(sudoku.isAnyElementRepeatable(validRow2));
+   EXPECT_FALSE(sudoku.isAnyElementRepeatable(invalidRow2));
 }
