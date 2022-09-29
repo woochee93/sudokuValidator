@@ -48,7 +48,7 @@ bool Sudoku::areAllValidColumns(int arr[9][9])
 {
    for (int columnIndex{0}; columnIndex < 9; columnIndex++)
    {
-      int *columnToCheck = getColumnByIndex(columnIndex, arr);
+      int *columnToCheck = getColumnByIndex(columnIndex);
       bool isNotValid = !isAnyElementRepeatable(columnToCheck);
       delete[] columnToCheck;
       if (isNotValid)
