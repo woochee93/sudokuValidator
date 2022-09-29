@@ -4,7 +4,7 @@ project(my_project)
 # GoogleTest requires at least C++14
 set(CMAKE_CXX_STANDARD 14)
 
-
+add_executable(app main.cpp Sudoku.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -17,11 +17,11 @@ FetchContent_MakeAvailable(googletest)
 add_compile_options(-lpthread -ggdb)
 enable_testing()
 
-add_executable(
-  my_tests
-  tests.cpp
-  Sudoku.cpp
-)
+# add_executable(
+#   my_tests
+#   tests.cpp
+#   Sudoku.cpp
+# )
 target_link_libraries(
   my_tests
   GTest::gtest_main

@@ -4,7 +4,7 @@
 class Fixture : public testing::Test
 {
 protected:
-   int solvedSudoku[9][9] = {{5, 3, 4, 6, 7, 8, 9, 1, 2},
+   int solvedBoard[9][9] = {{5, 3, 4, 6, 7, 8, 9, 1, 2},
                              {6, 7, 2, 1, 9, 5, 3, 4, 8},
                              {1, 9, 8, 3, 4, 2, 5, 6, 7},
                              {8, 5, 9, 7, 6, 1, 4, 2, 3},
@@ -14,7 +14,7 @@ protected:
                              {2, 8, 7, 4, 1, 9, 6, 3, 5},
                              {3, 4, 5, 2, 8, 6, 1, 7, 9}};
 
-   int failSudoku[9][9] = {{5, 3, 4, 6, 7, 8, 9, 1, 2},
+   int failedBoard[9][9] = {{5, 3, 4, 6, 7, 8, 9, 1, 2},
                            {6, 7, 2, 1, 9, 0, 3, 4, 8},
                            {1, 0, 0, 3, 4, 2, 5, 6, 0},
                            {8, 5, 9, 7, 6, 1, 0, 2, 0},
@@ -26,51 +26,52 @@ protected:
    int validRow[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
    int validRow2[9] = {5, 6, 3, 2, 8, 1, 4, 7, 9};
    int invalidRow2[9] = {1, 6, 3, 2, 8, 1, 4, 7, 9};
-   Sudoku sudoku;
+   Sudoku solvedSudoku{solvedBoard};
+   Sudoku failedSudoku{failedBoard};
 };
 
 
 
 TEST_F(Fixture, bossTest){
-   EXPECT_TRUE(sudoku.areAllValidSquares(solvedSudoku));
-   EXPECT_FALSE(sudoku.areAllValidSquares(failSudoku));
+   EXPECT_TRUE(solvedSudoku.areAllValidSquares());
+   EXPECT_FALSE(failedBoard.areAllValidSquares());
 
-   EXPECT_TRUE(sudoku.areAllValidColumns(solvedSudoku));
-   EXPECT_FALSE(sudoku.areAllValidColumns(failSudoku));
+   EXPECT_TRUE(solvedSudoku.areAllValidColumns());
+   EXPECT_FALSE(failedBoard.areAllValidColumns());
 
-   EXPECT_TRUE(sudoku.areAllValidRows(solvedSudoku));
-   EXPECT_FALSE(sudoku.areAllValidRows(failSudoku));
+   EXPECT_TRUE(solvedSudoku.areAllValidRows());
+   EXPECT_FALSE(failedBoard.areAllValidRows());
 
 }
 
 
 TEST_F(Fixture, checkAllSquare){
-   EXPECT_TRUE(sudoku.areAllValidSquares(solvedSudoku));
-   EXPECT_FALSE(sudoku.areAllValidSquares(failSudoku));
+   EXPECT_TRUE(solvedSudoku.areAllValidSquares());
+   EXPECT_FALSE(failedBoard.areAllValidSquares());
 }
 
 
 TEST_F(Fixture, checkSquare){
-   EXPECT_TRUE(sudoku.isValidSquare(solvedSudoku,0,0));
-   EXPECT_FALSE(sudoku.isValidSquare(failSudoku,0,0));
+   EXPECT_TRUE(solvedSudoku.isValidSquare(0,0));
+   EXPECT_FALSE(failedBoard.isValidSquare(0,0));
 }
 
 
 TEST_F(Fixture, checkAllColumns)
 {
-   EXPECT_TRUE(sudoku.areAllValidColumns(solvedSudoku));
-   EXPECT_FALSE(sudoku.areAllValidColumns(failSudoku));
+   EXPECT_TRUE(solvedSudoku.areAllValidColumns());
+   EXPECT_FALSE(failedBoard.areAllValidColumns());
 }
 
 TEST_F(Fixture, checkAllRows)
 {
-   EXPECT_TRUE(sudoku.areAllValidRows(solvedSudoku));
-   EXPECT_FALSE(sudoku.areAllValidRows(failSudoku));
+   EXPECT_TRUE(solvedSudoku.areAllValidRows());
+   EXPECT_FALSE(failedBoard.areAllValidRows());
 }
 
 TEST_F(Fixture, checkRepetitions)
 {
-   EXPECT_TRUE(sudoku.isAnyElementRepeatable(validRow));
-   EXPECT_TRUE(sudoku.isAnyElementRepeatable(validRow2));
-   EXPECT_FALSE(sudoku.isAnyElementRepeatable(invalidRow2));
+   EXPECT_TRUE(solvedSudoku.isAnyElementRepeatable(validRow));
+   EXPECT_TRUE(solvedSudoku.isAnyElementRepeatable(validRow2));
+   EXPECT_FALSE(solvedSudoku.isAnyElementRepeatable(invalidRow2));
 }

@@ -1,5 +1,16 @@
 #include "Sudoku.hpp"
 
+Sudoku::Sudoku(int board[9][9])
+{
+   for (int i{0}; i < size; i++)
+   {
+      for (int j{0}; j < size; j++)
+      {
+         gameBoard[i][j] = board[i][j];
+      }
+   }
+}
+
 bool Sudoku::isAnyElementRepeatable(int arrToCheck[9])
 {
    for (int i{0}; i < 9; i++)
@@ -24,18 +35,19 @@ bool Sudoku::areAllValidRows(int arr[9][9])
    }
    return true;
 };
-int *Sudoku::getColumnByIndex(int columnIndex, int arr[9][9])
+int *Sudoku::getColumnByIndex(int columnIndex)
 {
    int *column = new int[9];
    for (int rowIndex{0}; rowIndex < 9; rowIndex++)
    {
-      column[rowIndex] = arr[rowIndex][columnIndex];
+      column[rowIndex] = gameBoard[rowIndex][columnIndex];
    }
    return column;
 };
 bool Sudoku::areAllValidColumns(int arr[9][9])
 {
-   for (int columnIndex{0}; columnIndex < 9; columnIndex++) {
+   for (int columnIndex{0}; columnIndex < 9; columnIndex++)
+   {
       int *columnToCheck = getColumnByIndex(columnIndex, arr);
       bool isNotValid = !isAnyElementRepeatable(columnToCheck);
       delete[] columnToCheck;
