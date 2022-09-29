@@ -32,40 +32,40 @@ protected:
 
 
 TEST_F(Fixture, bossTest){
-   EXPECT_TRUE(sudoku.checkAllSquares(solvedSudoku));
-   EXPECT_FALSE(sudoku.checkAllSquares(failSudoku));
+   EXPECT_TRUE(sudoku.areAllValidSquares(solvedSudoku));
+   EXPECT_FALSE(sudoku.areAllValidSquares(failSudoku));
 
-   EXPECT_TRUE(sudoku.checkAllColumns(solvedSudoku));
-   EXPECT_FALSE(sudoku.checkAllColumns(failSudoku));
+   EXPECT_TRUE(sudoku.areAllValidColumns(solvedSudoku));
+   EXPECT_FALSE(sudoku.areAllValidColumns(failSudoku));
 
-   EXPECT_TRUE(sudoku.checkAllRow(solvedSudoku));
-   EXPECT_FALSE(sudoku.checkAllRow(failSudoku));
+   EXPECT_TRUE(sudoku.areAllValidRows(solvedSudoku));
+   EXPECT_FALSE(sudoku.areAllValidRows(failSudoku));
 
 }
 
 
 TEST_F(Fixture, checkAllSquare){
-   EXPECT_TRUE(sudoku.checkAllSquares(solvedSudoku));
-   EXPECT_FALSE(sudoku.checkAllSquares(failSudoku));
+   EXPECT_TRUE(sudoku.areAllValidSquares(solvedSudoku));
+   EXPECT_FALSE(sudoku.areAllValidSquares(failSudoku));
 }
 
 
 TEST_F(Fixture, checkSquare){
-   EXPECT_TRUE(sudoku.checkSquare(solvedSudoku,0,0));
-   EXPECT_FALSE(sudoku.checkSquare(failSudoku,0,0));
+   EXPECT_TRUE(sudoku.isValidSquare(solvedSudoku,0,0));
+   EXPECT_FALSE(sudoku.isValidSquare(failSudoku,0,0));
 }
 
 
 TEST_F(Fixture, checkAllColumns)
 {
-   EXPECT_TRUE(sudoku.checkAllColumns(solvedSudoku));
-   EXPECT_FALSE(sudoku.checkAllColumns(failSudoku));
+   EXPECT_TRUE(sudoku.areAllValidColumns(solvedSudoku));
+   EXPECT_FALSE(sudoku.areAllValidColumns(failSudoku));
 }
 
 TEST_F(Fixture, checkAllRows)
 {
-   EXPECT_TRUE(sudoku.checkAllRow(solvedSudoku));
-   EXPECT_FALSE(sudoku.checkAllRow(failSudoku));
+   EXPECT_TRUE(sudoku.areAllValidRows(solvedSudoku));
+   EXPECT_FALSE(sudoku.areAllValidRows(failSudoku));
 }
 
 TEST_F(Fixture, checkRepetitions)

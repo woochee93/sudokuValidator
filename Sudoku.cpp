@@ -13,7 +13,7 @@ bool Sudoku::isAnyElementRepeatable(int arrToCheck[9])
    return true;
 }
 
-bool Sudoku::checkAllRow(int arr[9][9])
+bool Sudoku::areAllValidRows(int arr[9][9])
 {
    for (int i = 0; i < 9; i++)
    {
@@ -33,7 +33,7 @@ int *Sudoku::getColumnByIndex(int columnIndex, int arr[9][9])
    }
    return column;
 };
-bool Sudoku::checkAllColumns(int arr[9][9])
+bool Sudoku::areAllValidColumns(int arr[9][9])
 {
    for (int columnIndex{0}; columnIndex < 9; columnIndex++) {
       int *columnToCheck = getColumnByIndex(columnIndex, arr);
@@ -45,7 +45,7 @@ bool Sudoku::checkAllColumns(int arr[9][9])
    return true;
 }
 
-bool Sudoku::checkSquare(int arr[9][9], int x, int y)
+bool Sudoku::isValidSquare(int arr[9][9], int x, int y)
 {
    int arrToCheck[9];
    int index{0};
@@ -62,13 +62,13 @@ bool Sudoku::checkSquare(int arr[9][9], int x, int y)
    return isAnyElementRepeatable(arrToCheck);
 }
 
-bool Sudoku::checkAllSquares(int arr[9][9])
+bool Sudoku::areAllValidSquares(int arr[9][9])
 {
    for (int i = 0; i < 9; i += 3)
    {
       for (int j = 0; j < 9; j += 3)
       {
-         if (!checkSquare(arr, i, j))
+         if (!isValidSquare(arr, i, j))
          {
             return false;
          };
