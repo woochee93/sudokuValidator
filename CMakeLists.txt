@@ -17,11 +17,11 @@ FetchContent_MakeAvailable(googletest)
 add_compile_options(-lpthread -ggdb)
 enable_testing()
 
-# add_executable(
-#   my_tests
-#   tests.cpp
-#   Sudoku.cpp
-# )
+add_executable(
+  my_tests
+  tests.cpp
+  Sudoku.cpp
+)
 target_link_libraries(
   my_tests
   GTest::gtest_main

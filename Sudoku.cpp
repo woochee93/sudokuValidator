@@ -2,9 +2,9 @@
 
 Sudoku::Sudoku(int board[9][9])
 {
-   for (int i{0}; i < size; i++)
+   for (int i{0}; i < boardSize; i++)
    {
-      for (int j{0}; j < size; j++)
+      for (int j{0}; j < boardSize; j++)
       {
          gameBoard[i][j] = board[i][j];
       }
@@ -13,9 +13,9 @@ Sudoku::Sudoku(int board[9][9])
 
 bool Sudoku::isAnyElementRepeatable(int arrToCheck[9])
 {
-   for (int i{0}; i < 9; i++)
+   for (int i{0}; i < boardSize; i++)
    {
-      for (int j{i + 1}; j < 9; j++)
+      for (int j{i + 1}; j < boardSize; j++)
       {
          if (arrToCheck[i] == arrToCheck[j])
             return false;
@@ -26,27 +26,25 @@ bool Sudoku::isAnyElementRepeatable(int arrToCheck[9])
 
 bool Sudoku::areAllValidRows()
 {
-   for (int i = 0; i < 9; i++)
+   for (int i = 0; i < boardSize; i++)
    {
       if (!isAnyElementRepeatable(gameBoard[i]))
-      {
          return false;
-      };
    }
    return true;
 };
 int *Sudoku::getColumnByIndex(int columnIndex)
 {
-   int *column = new int[9];
-   for (int rowIndex{0}; rowIndex < 9; rowIndex++)
+   int *column = new int[boardSize];
+   for (int rowIndex{0}; rowIndex < boardSize; rowIndex++)
    {
       column[rowIndex] = gameBoard[rowIndex][columnIndex];
    }
    return column;
 };
-bool Sudoku::areAllValidColumns(int arr[9][9])
+bool Sudoku::areAllValidColumns()
 {
-   for (int columnIndex{0}; columnIndex < 9; columnIndex++)
+   for (int columnIndex{0}; columnIndex < boardSize; columnIndex++)
    {
       int *columnToCheck = getColumnByIndex(columnIndex);
       bool isNotValid = !isAnyElementRepeatable(columnToCheck);
@@ -57,9 +55,9 @@ bool Sudoku::areAllValidColumns(int arr[9][9])
    return true;
 }
 
-bool Sudoku::isValidSquare(int arr[9][9], int x, int y)
+bool Sudoku::isValidSquare(int x, int y)
 {
-   int arrToCheck[9];
+   int arrToCheck[boardSize];
    int index{0};
    const int indexOfRow{x};
    const int indexOfColumn{y};
@@ -67,20 +65,20 @@ bool Sudoku::isValidSquare(int arr[9][9], int x, int y)
    {
       for (int columnIndex{y}; columnIndex < (indexOfColumn + 3); columnIndex++)
       {
-         arrToCheck[index] = arr[rowIndex][columnIndex];
+         arrToCheck[index] = gameBoard[rowIndex][columnIndex];
          index++;
       }
    }
    return isAnyElementRepeatable(arrToCheck);
 }
 
-bool Sudoku::areAllValidSquares(int arr[9][9])
+bool Sudoku::areAllValidSquares()
 {
-   for (int i = 0; i < 9; i += 3)
+   for (int i = 0; i < boardSize; i += 3)
    {
-      for (int j = 0; j < 9; j += 3)
+      for (int j = 0; j < boardSize; j += 3)
       {
-         if (!isValidSquare(arr, i, j))
+         if (!isValidSquare( i, j))
          {
             return false;
          };
